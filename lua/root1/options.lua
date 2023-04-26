@@ -12,6 +12,7 @@ vim.opt.autoread = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 -- vim.opt.copyindent = true
+vim.opt.termguicolors = true
 
 --Plugin dependent options
 
@@ -20,8 +21,6 @@ if not status_ok then
 	vim.notify("Packer not found, remaining options dependent on plugins will not be executed.")
 	return
 end
-
-vim.cmd[[colorscheme tokyonight-night]]
 
 --WORKAROUND FOR TREESITTER FOLDS
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {

@@ -29,14 +29,15 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>e", ":Lex 25<cr>", opts)
 --Terminal binding
 keymap("n", "<leader>t", ":term<cr>", opts)
-keymap("n", "<leader>T", ":split<cr> :term <cr>", opts)
 keymap("t", "<ESC>", "<C-\\><C-n>", opts)
 
---todo: Window resizing
-keymap("n", "<leader><Up>", ":resize -2<CR>", opts)
-keymap("n", "<leader><Down>", ":resize +2<CR>", opts)
-keymap("n", "<leader><Left>", ":vertical resize +2<CR>", opts)
-keymap("n", "<leader><Right>", ":vertical resize -2<CR>", opts)
+--Window resizing
+keymap("n", "<leader>k", ":resize -2<CR>", opts)
+keymap("n", "<leader>j", ":resize +2<CR>", opts)
+keymap("n", "<leader>l", ":vertical resize +2<CR>", opts)
+keymap("n", "<leader>h", ":vertical resize -2<CR>", opts)
+
+--Window Splitting
 
 --Block mode: Move text up/down
 --NOTE: Not working on MacOS.

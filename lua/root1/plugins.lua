@@ -16,6 +16,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	vim.cmd [[packadd packer.nvim]]
 end
 
+vim.cmd [[
+	augroup packer_user_config
+		autocmd!
+		autocmd BufWritePost plugins.lua source <afile> | PackerSync
+	augroup end
+]]
+
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
 	vim.notify("Packer not found.")
@@ -33,10 +40,10 @@ packer.init {
 
 --Begin plugin install
 return packer.startup(function(use)
-	use "wbthomason/packer.nvim"
+	use "wbthomason/packer.nvim" -- Have Packer manage itself
 	use "nvim-lua/popup.nvim"
 	use "nvim-lua/plenary.nvim"
-	use "folke/tokyonight.nvim"	
+	use "folke/tokyonight.nvim"
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
@@ -44,6 +51,13 @@ return packer.startup(function(use)
 			ts_update()
 		end,
 	}
+	use {
+	    "williamboman/mason.nvim",
+	    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+	}
+	use "williamboman/mason-lspconfig.nvim"
+	use "neovim/nvim-lspconfig"
+
 	if PACKER_BOOTSTRAP then
 		packer.sync()
 	end
