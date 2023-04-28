@@ -59,19 +59,28 @@ local lsp_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 	vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 
-	if client.name == "tsserver" then
-		return
-	end
-
-	vim.api.nvim_exec([[ 
-		augroup lsp_document_highlight
-			autocmd!* <buffer>
+	if client.server_capabilities.documentHighlight then
+		vim.api.nvim_exec(
+		[[
+			augroup lsp_document_highlight
+			autocmd! * <buffer>
 			autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
 			autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-		augroup END
-	]])
+			augroup END
+		]],
+		false
+		)
+	end
+
 end
 
+-- local lspconfig = require("lspconfig")
+local status_ok, lspconfig = pcall(require, "lspconfig")
+if not status_ok then
+	return
+end
+
+local get_servers = mconfig.get_installed_servers
 
 local config = {
 	virtual_text = false,
@@ -90,20 +99,19 @@ local config = {
 
 vim.diagnostic.config(config)
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded",
-})
-
-local lspconfig = require("lspconfig")
-local get_servers = mconfig.get_installed_servers
-
 for _, server_name in ipairs(get_servers()) do
-	lspconfig[server_name].setup({
+	local opts = {
 		on_attach = lsp_attach,
 		capabilities = lsp_capabilities,
-	})
+	}
+	if server_name == "tsserver" then
+		opts.capabilities.documentHighlight = false
+	end
+
+	local settings_ok, settings = pcall(require, "root1.lsp.settings" .. server_name)
+	if settings_ok then
+		vim.tbl_deep_extend("force", settings, opts)
+	end
+
+	lspconfig[server_name].setup(opts)
 end
