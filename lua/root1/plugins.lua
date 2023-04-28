@@ -69,6 +69,11 @@ return packer.startup(function(use)
 	-- Snippet Engine/Templates
 	use "L3MON4D3/LuaSnip"
 	use "rafamadriz/friendly-snippets"
+	use {
+	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
+	-- or                            , branch = '0.1.x',
+	  requires = { {'nvim-lua/plenary.nvim'} }
+	}
 
 	if PACKER_BOOTSTRAP then
 		packer.sync()

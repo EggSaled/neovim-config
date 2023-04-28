@@ -1,5 +1,7 @@
 local opts = { noremap = true, silent = true } -- noremap: No Recursive remap, silent: no output
 
+local term_opts = { silent = true }
+
 --Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
@@ -29,7 +31,7 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>e", ":Lex 25<cr>", opts)
 --Terminal binding
 keymap("n", "<leader>t", ":term<cr>", opts)
-keymap("t", "<ESC>", "<C-\\><C-n>", opts)
+keymap("t", "<ESC>", "<C-\\><C-n>", term_opts)
 
 --Window resizing
 keymap("n", "<leader>k", ":resize -2<CR>", opts)
@@ -43,4 +45,6 @@ keymap("n", "<leader>h", ":vertical resize -2<CR>", opts)
 --	keymap("v", "<Shift>j", ":m +1<CR>==", opts)
 --	keymap("v", "<Shift>k", ":m -1<CR>==", opts)
 
---Treesitter Folds
+--Telescope
+keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
+keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
