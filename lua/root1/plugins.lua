@@ -43,7 +43,8 @@ return packer.startup(function(use)
 	use "wbthomason/packer.nvim" -- Have Packer manage itself
 	use "nvim-lua/popup.nvim"
 	use "nvim-lua/plenary.nvim"
-	use "folke/tokyonight.nvim"
+	use "folke/tokyonight.nvim" -- Colorscheme
+	-- Better Syntax Highlighting
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
@@ -51,12 +52,22 @@ return packer.startup(function(use)
 			ts_update()
 		end,
 	}
+	-- LSP Plugins
 	use {
 	    "williamboman/mason.nvim",
 	    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
 	}
 	use "williamboman/mason-lspconfig.nvim"
 	use "neovim/nvim-lspconfig"
+	-- CMP plugins (autocompletions)
+	use "hrsh7th/nvim-cmp"
+	use "hrsh7th/cmp-buffer"
+	use "hrsh7th/cmp-path"
+	use "hrsh7th/cmp-cmdline"
+	use "saadparwaiz1/cmp_luasnip"
+	-- Snippet Engine/Templates
+	use "L3MON4D3/LuaSnip"
+	use "rafamadriz/friendly-snippets"
 
 	if PACKER_BOOTSTRAP then
 		packer.sync()

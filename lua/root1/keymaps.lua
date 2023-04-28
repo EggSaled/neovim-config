@@ -40,6 +40,7 @@ keymap("n", "<leader>h", ":vertical resize -2<CR>", opts)
 --Window Splitting
 
 --Block mode: Move text up/down
---NOTE: Not working on MacOS.
---	keymap("v", "<A-j>", ":m +1<CR>==", opts)
---	keymap("v", "<A-k>", ":m -1<CR>==", opts)
+--	keymap("v", "<Shift>j", ":m +1<CR>==", opts)
+--	keymap("v", "<Shift>k", ":m -1<CR>==", opts)
+
+--Treesitter Folds
