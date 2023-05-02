@@ -52,28 +52,40 @@ return packer.startup(function(use)
 			ts_update()
 		end,
 	}
-	-- LSP Plugins
+	-- LSP
 	use {
-	    "williamboman/mason.nvim",
-	    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+	  'VonHeikemen/lsp-zero.nvim',
+	  branch = 'v2.x',
+	  requires = {
+	    -- LSP Support
+	    {'neovim/nvim-lspconfig'},             -- Required
+	    {                                      -- Optional
+	      'williamboman/mason.nvim',
+	      run = function()
+		pcall(vim.cmd, 'MasonUpdate')
+	      end,
+	    },
+	    {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+	    -- Autocompletion
+	    {'hrsh7th/nvim-cmp'},     -- Required
+	    {'hrsh7th/cmp-nvim-lsp'}, -- Required
+	    {'L3MON4D3/LuaSnip'},     -- Required
+	  }
 	}
-	use "williamboman/mason-lspconfig.nvim"
-	use "neovim/nvim-lspconfig"
-	-- CMP plugins (autocompletions)
-	use "hrsh7th/nvim-cmp"
+	-- Autocompletion
 	use "hrsh7th/cmp-buffer"
 	use "hrsh7th/cmp-path"
 	use "hrsh7th/cmp-cmdline"
 	use "saadparwaiz1/cmp_luasnip"
-	use "hrsh7th/cmp-nvim-lsp"
-	-- Snippet Engine/Templates
-	use "L3MON4D3/LuaSnip"
 	use "rafamadriz/friendly-snippets"
 	use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
 	-- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
 	}
+	-- Git Signs
+	use "lewis6991/gitsigns.nvim"
 
 	if PACKER_BOOTSTRAP then
 		packer.sync()

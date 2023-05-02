@@ -1,8 +1,10 @@
-require "root1.options"
-require "root1.keymaps"
-require "root1.plugins"
-require "root1.colorscheme"
-require "root1.cmp"
-require "root1.lsp"
+require "eggsaled.options"
+require "eggsaled.keymaps"
+require "eggsaled.plugins"
+require "eggsaled.colorscheme"
+require "eggsaled.cmp"
+require "eggsaled.lsp"
+require "eggsaled.treesitter"
+require "eggsaled.gitsigns"
 
 vim.cmd[[ set background=dark ]]
