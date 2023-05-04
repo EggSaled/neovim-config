@@ -86,7 +86,15 @@ return packer.startup(function(use)
 	}
 	-- Git Signs
 	use "lewis6991/gitsigns.nvim"
-
+	-- Nvim-Tree (Better alternative to Netrw)
+	use {
+		'nvim-tree/nvim-tree.lua',
+	  	requires = {
+	    	'nvim-tree/nvim-web-devicons', -- optional
+	  	}
+	}
+	-- Bufferline
+	use "akinsho/bufferline.nvim"
 	if PACKER_BOOTSTRAP then
 		packer.sync()
 	end
