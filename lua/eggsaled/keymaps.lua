@@ -27,8 +27,8 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
---Lexplore binding
-keymap("n", "<leader>e", ":Lex 25<cr>", opts)
+--Nvim Tree toggle
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 --Terminal binding
 keymap("n", "<leader>t", ":term<cr>", opts)
 keymap("t", "<ESC>", "<C-\\><C-n>", term_opts)
@@ -46,5 +46,5 @@ keymap("n", "<leader>h", ":vertical resize -2<CR>", opts)
 --	keymap("v", "<Shift>k", ":m -1<CR>==", opts)
 
 --Telescope
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
+keymap("n", "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
