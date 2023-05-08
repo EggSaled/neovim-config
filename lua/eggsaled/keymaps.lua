@@ -39,7 +39,10 @@ keymap("n", "<leader>j", ":resize +2<CR>", opts)
 keymap("n", "<leader>l", ":vertical resize +2<CR>", opts)
 keymap("n", "<leader>h", ":vertical resize -2<CR>", opts)
 
---Window Splitting
+-- Buffer Navigation
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "be", ":BufferLineSortByExtension<CR>", opts)
 
 --Block mode: Move text up/down
 --	keymap("v", "<Shift>j", ":m +1<CR>==", opts)
