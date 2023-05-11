@@ -73,6 +73,7 @@ return packer.startup(function(use)
 	    {'L3MON4D3/LuaSnip'},     -- Required
 	  }
 	}
+	use "jose-elias-alvarez/null-ls.nvim"
 	-- Autocompletion
 	use "hrsh7th/cmp-buffer"
 	use "hrsh7th/cmp-path"
@@ -95,6 +96,9 @@ return packer.startup(function(use)
 	}
 	-- Bufferline
 	use "akinsho/bufferline.nvim"
+	-- BBye (For closing buffers made by bufferline)
+	use "moll/vim-bbye"
+
 	if PACKER_BOOTSTRAP then
 		packer.sync()
 	end

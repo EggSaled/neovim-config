@@ -11,7 +11,7 @@ vim.g.mapleader = " "
 vim.g.localleader = " "
 
 --Info:
---	keymap() takes 4 arguments: Mode, New Map, Target Map, Options 
+--	keymap() takes 4 arguments: Mode, New Map, Target Map, Options
 
 --Modes:
 --	- normal_mode "n"
@@ -22,7 +22,7 @@ vim.g.localleader = " "
 --	- command_mode "c"
 
 --Window navigation
-keymap("n", "<C-h>","<C-w>h", opts)
+keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
@@ -42,12 +42,21 @@ keymap("n", "<leader>h", ":vertical resize -2<CR>", opts)
 -- Buffer Navigation
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<leader>q", ":Bdelete<CR>", opts)
 keymap("n", "be", ":BufferLineSortByExtension<CR>", opts)
 
---Block mode: Move text up/down
---	keymap("v", "<Shift>j", ":m +1<CR>==", opts)
---	keymap("v", "<Shift>k", ":m -1<CR>==", opts)
+-- Visual Mode
+keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 --Telescope
-keymap("n", "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
+keymap("n", "<leader>ff",
+	"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>",
+	opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
+
+--Gitsigns
+keymap("n", "<leader>g", ":Gitsigns preview_hunk<CR>", opts)
+
+--Null-ls
+keymap("n", "<leader>F", ":lua vim.lsp.buf.format()<CR>", opts)

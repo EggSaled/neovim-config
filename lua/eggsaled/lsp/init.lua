@@ -20,7 +20,7 @@ if not config_ok then
 	return
 end
 
-local status_ok, lsp = pcall(require, 'lsp-zero')
+local status_ok, lsp = pcall(require, "lsp-zero")
 if not status_ok then
 	return
 end
@@ -28,12 +28,12 @@ end
 mason.setup({
 	ui = {
 		icons = {
-		    package_installed = "✓",
-		    package_pending = "➜",
-		    package_uninstalled = "✗"
-		}
-	}
-    })
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
+})
 mconfig.setup({
 	ensure_installed = servers,
 	automatic_installation = true,
@@ -58,9 +58,15 @@ vim.diagnostic.config(config)
 
 lsp = lsp.preset({})
 lsp.on_attach(function(client, bufnr)
-	lsp.default_keymaps({bufnr = bufnr})
+	lsp.default_keymaps({ bufnr = bufnr })
 end)
 
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
+
+local test_ok, _ = pcall(require, "eggsaled.lsp.null-ls")
+if not test_ok then
+	vim.notify("Error with loading Null-ls.lua", vim.log.levels.ERROR)
+	return
+end
