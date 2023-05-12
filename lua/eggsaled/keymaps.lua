@@ -50,13 +50,16 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 --Telescope
-keymap("n", "<leader>ff",
+keymap(
+	"n",
+	"<leader>ff",
 	"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>",
-	opts)
+	opts
+)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
 
 --Gitsigns
 keymap("n", "<leader>g", ":Gitsigns preview_hunk<CR>", opts)
 
 --Null-ls
-keymap("n", "<leader>F", ":lua vim.lsp.buf.format()<CR>", opts)
+keymap("n", "<leader>F", ":Format<CR>", opts)
