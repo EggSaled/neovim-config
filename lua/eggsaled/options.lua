@@ -9,8 +9,8 @@ vim.opt.cursorline = true
 vim.opt.cmdheight = 2
 vim.opt.wrap = false
 vim.opt.autoread = true
-vim.opt.autoindent = false
-vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.smartindent = false
 -- vim.opt.copyindent = true
 vim.opt.termguicolors = true
 

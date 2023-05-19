@@ -62,4 +62,4 @@ keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
 keymap("n", "<leader>g", ":Gitsigns preview_hunk<CR>", opts)
 
 --Null-ls
-keymap("n", "<leader>F", ":Format<CR>", opts)
+keymap("n", "<leader>F", ":lua vim.lsp.buf.format()<CR>", opts)

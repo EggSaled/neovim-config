@@ -6,6 +6,7 @@ local servers = {
 	"jsonls",
 	"lua_ls",
 	"pyright",
+	"rust_analyzer",
 	"sqlls",
 	"tsserver",
 }
@@ -58,11 +59,7 @@ vim.diagnostic.config(config)
 
 lsp = lsp.preset({})
 lsp.on_attach(function(client, bufnr)
-	if client.name == "tsserver" then
-		client.resolved_capabilities.document_formatting = false
-	end
 	lsp.default_keymaps({ bufnr = bufnr })
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
 end)
 
 require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
