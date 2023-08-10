@@ -100,6 +100,8 @@ return packer.startup(function(use)
 	use("akinsho/bufferline.nvim")
 	-- BBye (For closing buffers made by bufferline)
 	use("moll/vim-bbye")
+	-- Formatting (Since null-ls is getting archived)
+	use("mhartington/formatter.nvim")
 
 	if PACKER_BOOTSTRAP then
 		packer.sync()
