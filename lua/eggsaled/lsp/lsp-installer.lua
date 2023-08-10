@@ -1,10 +1,12 @@
 local servers = {
 	"bashls",
 	"clangd",
+	"gopls",
 	"html",
 	"jdtls",
 	"jsonls",
 	"lua_ls",
+	"intelephense",
 	"pyright",
 	"rust_analyzer",
 	"sqlls",

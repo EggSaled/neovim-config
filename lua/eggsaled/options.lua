@@ -18,7 +18,6 @@ vim.opt.termguicolors = true
 
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-	vim.notify("Packer not found, remaining options dependent on plugins will not be executed.")
 	return
 end
 
