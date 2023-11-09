@@ -83,7 +83,7 @@ return packer.startup(function(use)
 	use("rafamadriz/friendly-snippets")
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
+		tag = "0.1.4",
 		-- or                            , branch = '0.1.x',
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
@@ -100,6 +100,8 @@ return packer.startup(function(use)
 	use("akinsho/bufferline.nvim")
 	-- BBye (For closing buffers made by bufferline)
 	use("moll/vim-bbye")
+	-- Formatting (Since null-ls is getting archived)
+	use("mhartington/formatter.nvim")
 
 	if PACKER_BOOTSTRAP then
 		packer.sync()
