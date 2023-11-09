@@ -12,9 +12,11 @@ formatter.setup({
 	filetype = {
 		javascript = {
 			require("formatter.filetypes.javascript").eslint_d,
+			require("formatter.filetypes.javascript").prettier
 		},
 		javascriptreact = {
-			require("formatter.filetypes.javascriptreact").eslint_d
+			require("formatter.filetypes.javascriptreact").eslint_d,
+			require("formatter.filetypes.javascriptreact").prettier
 		},
 		lua = {
 			require("formatter.filetypes.lua").stylua,
