@@ -14,13 +14,6 @@ vim.opt.smartindent = false
 -- vim.opt.copyindent = true
 vim.opt.termguicolors = true
 
---Plugin dependent options
-
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-	return
-end
-
 --WORKAROUND FOR TREESITTER FOLDS
 --vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
 	--group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
