@@ -1,6 +1,7 @@
 local servers = {
 	"bashls",
 	"clangd",
+	"cssls",
 	"gopls",
 	"html",
 	"jdtls",
