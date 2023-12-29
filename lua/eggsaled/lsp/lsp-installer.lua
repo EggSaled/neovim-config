@@ -1,6 +1,7 @@
 local servers = {
 	"bashls",
 	"clangd",
+	"cssls",
 	"gopls",
 	"html",
 	"jdtls",
@@ -39,6 +40,13 @@ mason.setup({
 })
 mconfig.setup({
 	ensure_installed = servers,
+	handlers = {
+		lsp.default_setup,
+		lua_ls = function()
+			local lua_opts = lsp.nvim_lua_ls()
+			require('lspconfig').lua_ls.setup(lua_opts)
+		end,
+	},
 	automatic_installation = true,
 })
 
@@ -61,7 +69,7 @@ vim.diagnostic.config(config)
 
 lsp = lsp.preset({})
 lsp.on_attach(function(client, bufnr)
-	lsp.default_keymaps({ bufnr = bufnr })
+	lsp.default_keymaps({ buffer = bufnr })
 end)
 
 require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
