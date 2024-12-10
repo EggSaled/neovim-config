@@ -43,7 +43,7 @@ keymap("n", "<leader>h", ":vertical resize -2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<leader>q", ":Bdelete<CR>", opts)
-keymap("n", "be", ":BufferLineSortByExtension<CR>", opts)
+-- keymap("n", "be", ":BufferLineSortByExtension<CR>", opts)
 
 -- Visual Mode
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)

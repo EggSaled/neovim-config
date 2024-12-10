@@ -38,6 +38,7 @@ mason.setup({
 		},
 	},
 })
+
 mconfig.setup({
 	ensure_installed = servers,
 	handlers = {
