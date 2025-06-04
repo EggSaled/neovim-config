@@ -1,6 +1,5 @@
 require "eggsaled.options"
 require "eggsaled.keymaps"
-require "eggsaled.plugins"
 require "eggsaled.colorscheme"
 require "eggsaled.cmp"
 require "eggsaled.lsp"
