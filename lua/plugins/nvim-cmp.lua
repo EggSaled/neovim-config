@@ -1,5 +1,7 @@
--- TODO: Complete setup of nvim-cmp, set up plugin files for
--- 	buffer, path, and cmdline
+--[[
+--  TODO: Using both `require('luasnip')` and the `local luasnip = require(...)` in the config.
+--        Consider sticking to only one and using that throughout the function.
+--]]
 return {
 	"hrsh7th/nvim-cmp",
 	config = function()
@@ -30,9 +32,9 @@ return {
 		  Operator = "",
 		  TypeParameter = "",
 		}
-		
 		-- nvim-cmp setup	
 		local cmp = require("cmp")
+		local luasnip = require("luasnip")
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -46,6 +48,26 @@ return {
 				['<C-Space>'] = cmp.mapping.complete(),
 				['<C-e>'] = cmp.mapping.abort(),
 				['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+				['<Tab>'] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif luasnip.expandable() then
+						luasnip.expand()
+					elseif luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump()
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<S-Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i","s", }),
 			}),
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
