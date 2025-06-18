@@ -28,7 +28,7 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 --Nvim Tree toggle
-keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>e", ":Explore<cr>", opts)
 --Terminal binding
 keymap("n", "<leader>t", ":term<cr>", opts)
 keymap("t", "<ESC>", "<C-\\><C-n>", term_opts)
@@ -61,8 +61,10 @@ keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
 --Gitsigns
 keymap("n", "<leader>g", ":Gitsigns preview_hunk<CR>", opts)
 
---Null-ls
--- keymap("n", "<leader>F", ":lua vim.lsp.buf.format()<CR>", opts)
+-- vim.diagnostic keymaps
+keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
 -- Formatter 
 keymap("n", "<leader>F", ":Format<CR>", opts)
