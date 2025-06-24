@@ -1,13 +1,8 @@
---[[
-	filewatcher.lua
+local autocmd = vim.api.nvim_create_autocmd
 
-	Since plugin `nvim-lspconfig` already has default configs for the lsp's currently installed
-	(by Mason), `opts` will be used to create autocmds for files I expect to frequently edit.
-]]
+-- LSP autocmd
 
--- opts contains the name of the lsp config, and the filetypes (derived from the config) to attach the autocmd to
-
-local opts = {
+local lsp_opts = {
 	{ "bashls", { "bash", "sh" } },
 	{ "clangd", { "c", "cpp" } },
 	{ "cssls", { "css", "scss", "less" } },
@@ -20,15 +15,40 @@ local opts = {
 	{ "ts_ls", { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" } },
 }
 
-local autocmd = vim.api.nvim_create_autocmd
-
-for _, v in pairs(opts) do
+for _, v in pairs(lsp_opts) do
 	autocmd("FileType", {
 		pattern = v[2],
-		callback = function()
+		callback = function(args)
 			-- Check if the lsp server is not already enabled.
 			if not vim.lsp.is_enabled(v[1]) then
-				vim.lsp.enable(v[1], true);
+				vim.lsp.enable(v[1], true)
+			end
+		end
+	})
+end
+
+-- Treesitter autocmd
+
+local treesitter_opts = {
+	"c",
+	"css",
+	"editorconfig",
+	"html",
+	"java",
+	"javascript",
+	"json",
+	"lua",
+	"markdown",
+	"python",
+	"typescript",
+}
+
+for _, language in ipairs(treesitter_opts) do
+	autocmd("FileType", {
+		pattern = vim.treesitter.language.get_filetypes(language),
+		callback = function(args)
+			if vim.treesitter.language.add(language) then
+				vim.treesitter.start(args.bufnr, language)
 			end
 		end
 	})
